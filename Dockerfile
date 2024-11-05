@@ -2,10 +2,11 @@
 FROM python:3.12-slim-bullseye
 
 # Set the working directory to /app in the container
-WORKDIR /app
+WORKDIR /home/josh336
 
 # Create a non-root user named 'myuser' with a home directory
-RUN useradd -m myuser
+RUN groupadd -g 1000 josh336 && \
+    useradd -r -u 1000 -g josh336 josh336
 
 # Copy the requirements.txt file to the container to install Python dependencies
 COPY requirements.txt ./
@@ -15,13 +16,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Before copying the application code, create the logs and qr_codes directories
 # and ensure they are owned by the non-root user
-RUN mkdir logs qr_codes && chown myuser:myuser logs qr_codes
+RUN mkdir logs qr_codes && chown josh336:josh336 logs qr_codes
 
 # Copy the rest of the application's source code into the container, setting ownership to 'myuser'
-COPY --chown=myuser:myuser . .
+COPY --chown=josh336:josh336 . .
 
 # Switch to the 'myuser' user to run the application
-USER myuser
+USER josh336
 
 # Use the Python interpreter as the entrypoint and the script as the first argument
 # This allows additional command-line arguments to be passed to the script via the docker run command

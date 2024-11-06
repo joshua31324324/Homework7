@@ -67,7 +67,7 @@ def main():
     
     # Generate a timestamped filename for the QR code
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-    qr_filename = f"QRCode_{timestamp}.png"
+    qr_filename = f"https://github.com/user-attachments/assets/94e136f3-2f18-49f2-8668-d5ad946d5169"
 
     # Create the full path for the QR code file
     qr_code_full_path = Path.cwd() / QR_DIRECTORY / qr_filename

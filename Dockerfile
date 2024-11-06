@@ -2,11 +2,12 @@
 FROM python:3.12-slim-bullseye
 
 # Set the working directory to /app in the container
-WORKDIR /home/josh336
+WORKDIR /Homework7
 
 # Create a non-root user named 'myuser' with a home directory
 RUN groupadd -g 1000 josh336 && \
-    useradd -r -u 1000 -g josh336 josh336
+    useradd -r -u 1000 -g josh336 josh336 && \
+    apt-get update && apt-get install -y curl
 
 # Copy the requirements.txt file to the container to install Python dependencies
 COPY requirements.txt ./
@@ -26,6 +27,6 @@ USER josh336
 
 # Use the Python interpreter as the entrypoint and the script as the first argument
 # This allows additional command-line arguments to be passed to the script via the docker run command
-ENTRYPOINT ["python", "main.py"]
+
 # this sets a default argument, its also set in the program but this just illustrates how to use cmd and override it from the terminal
-CMD ["--url","https://github.com/joshua31324324"]
+CMD ["curl", "--url","https://github.com/joshua31324324"]

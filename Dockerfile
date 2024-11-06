@@ -2,7 +2,7 @@
 FROM python:3.12-slim-bullseye
 
 # Set the working directory to /app in the container
-WORKDIR /Homework7
+WORKDIR /app
 
 # Create a non-root user named 'myuser' with a home directory
 RUN groupadd -g 1000 josh336 && \

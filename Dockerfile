@@ -14,7 +14,7 @@ COPY requirements.txt ./
 
 # Install the Python packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
-
+RUN pip install qrcode[pil]
 # Before copying the application code, create the logs and qr_codes directories
 # and ensure they are owned by the non-root user
 RUN mkdir logs qr_codes && chown josh336:josh336 logs qr_codes
